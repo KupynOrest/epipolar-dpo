@@ -14,7 +14,7 @@
 
 **This repository is a work in progress** and demonstrates how to align video diffusion models with epipolar geometry constraints using preference-based optimization. We bridge modern video generation with classical computer vision by using epipolar geometry as a reward signal in a Flow-DPO framework to improve 3D consistency in generated videos.
 
-![Epipolar Alignment](https://epipolar-dpo.github.io/static/images/teaser.png)
+![Epipolar Alignment](images/architecture.svg)
 
 ## News
 - [2025/01] 🔥 Initial code release - Training pipeline and evaluation metrics
