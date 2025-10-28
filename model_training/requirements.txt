@@ -1,0 +1,17 @@
+hydra-core==1.3.2
+lightning==2.5.1
+tensorboard==2.19.0
+
+torch==2.4.1  # Using the latest version found
+torchvision==0.19.1
+accelerate==1.0.1
+peft==0.15.1  # Using the latest version found
+
+diffusers==0.30.3
+transformers==4.50.3
+huggingface-hub==0.26.1
+sentencepiece==0.2.0
+numpy==1.26.4
+fire==0.7.0
+diffsynth
+

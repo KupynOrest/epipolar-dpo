@@ -1,0 +1,44 @@
+data_path: "/path/to/original/videos"
+output_dir: "/path/to/output"
+improved_captions_path: "/path/to/captions.json"
+num_samples_per_source: 300
+seed: 42
+split: "test"
+run_baseline: true
+run_lora: true
+overwrite: false
+lora_path: null
+model_path: /path/to/wan/model
+inlier_regression_path: null
+sources:
+  - "DL3DV-10K"
+  - "RealEstate10K"
+baseline_video_path: null
+
+# Common generation parameters
+image_to_video: true
+num_inference_steps: 40
+tiled: true
+width: 832
+height: 480
+num_frames: 81
+fps: 15
+quality: 5
+negative_prompt: ""
+
+evaluators:
+  - _target_: metrics.video_evaluation.EpipolarEvaluator
+    sampling_rate: 15
+    descriptor_type: "sift"
+  - _target_: metrics.video_evaluation.DynamicsEvaluator
+  - _target_: metrics.video_evaluation.PerspectiveEvaluator
+    classifier_path: "/path/to/perspective/classifier.pt"
+    sampling_rate: 1
+
+
+# Command-line overrides
+hydra:
+  run:
+    dir: ${output_dir}
+  job:
+    chdir: false

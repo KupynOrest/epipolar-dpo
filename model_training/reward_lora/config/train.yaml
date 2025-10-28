@@ -1,0 +1,42 @@
+training:
+  learning_rate: 5e-6
+  max_epochs: 100
+  accumulate_grad_batches: 8
+  precision: "bf16"
+  strategy: "auto"
+  beta: 500
+  max_steps: 10000
+  train_strategy: dpo
+  static_penalty_lambda: 0.0
+  inlier_regression_lambda: 0.0
+  gradient_clip_val: 1.0
+  gradient_clip_algorithm: "norm"
+
+lora:
+  rank: 64
+  alpha: 128.0
+  target_modules:
+    - "q"
+    - "k"
+    - "v"
+    - "o"
+
+logging:
+  output_path: "/path/to/output"
+  save_top_k: -1
+  checkpoint_every_n_steps: 100
+  experiment_name: "wan_reward_lora"
+
+model:
+  dit_path: /path/to/wan/model/diffusion_pytorch_model.safetensors
+  pretrained_lora_path: null
+  inlier_regression_path: null
+
+data:
+  metadata_path: "/path/to/annotated/metadata.json"
+  metric_name: "epipolar_consistency"
+  metric_mode: "min"
+  min_gap: 0.0
+  metric_threshold: 8.0
+  dataloader_num_workers: 4
+  batch_size: 1

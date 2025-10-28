@@ -1,0 +1,8 @@
+evaluators:
+  - _target_: metrics.video_evaluation.EpipolarEvaluator
+    descriptor_type: sift
+  - _target_: metrics.video_evaluation.DynamicsEvaluator
+
+metadata_folder: /scratch/shared/beegfs/okupyn/WanT2VGenerations
+save_folder: /scratch/shared/beegfs/okupyn/WanT2VGenerations/MetadataSIFT
+save_frequency: 200
