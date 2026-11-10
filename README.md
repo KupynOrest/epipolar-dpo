@@ -161,15 +161,15 @@ Our epipolar-aligned model significantly reduces artifacts and enhances motion s
 
 ## Citation
 
-If you use this code, please cite the following arXiv version. The accepted TMLR manuscript has an expanded author list; its final citation can be added after publication:
+If you use this code in your research, please cite:
 
 ```bibtex
-@article{kupyn2025epipolar,
+@misc{kupyn2026epipolar,
   title={Epipolar Geometry Improves Video Generation Models},
-  author={Kupyn, Orest and Manhardt, Fabian and Tombari, Federico and Rupprecht, Christian},
-  journal={arXiv preprint arXiv:2510.21615},
-  year={2025},
-  url={https://arxiv.org/abs/2510.21615}
+  author={Kupyn, Orest and Uscidda, Théo and Tintore Gazulla, Marta and Manhardt, Fabian and Tombari, Federico and Rupprecht, Christian},
+  year={2026},
+  note={Transactions on Machine Learning Research},
+  url={https://openreview.net/forum?id=xKvQakeoBP}
 }
 ```
 
