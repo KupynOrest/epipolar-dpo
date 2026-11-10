@@ -2,9 +2,9 @@
 
 # Epipolar Geometry Improves Video Generation Models
 
-**Orest Kupyn**<sup>1</sup> · **Fabian Manhardt**<sup>2</sup> · **Federico Tombari**<sup>2,3</sup> · **Christian Rupprecht**<sup>1</sup>
+**Orest Kupyn**<sup>1</sup> · **Théo Uscidda**<sup>2,3</sup> · **Marta Tintore Gazulla**<sup>2</sup> · **Fabian Manhardt**<sup>2</sup> · **Federico Tombari**<sup>2,4</sup> · **Christian Rupprecht**<sup>1</sup>
 
-<sup>1</sup>University of Oxford · <sup>2</sup>Google · <sup>3</sup>TU Munich
+<sup>1</sup>University of Oxford · <sup>2</sup>Google Research · <sup>3</sup>CREST-ENSAE, Institut Polytechnique de Paris · <sup>4</sup>Technical University of Munich
 
 <a href='https://arxiv.org/abs/2510.21615'><img src='https://img.shields.io/badge/arXiv-2510.21615-b31b1b.svg'></a>
 <a href='https://epipolar-dpo.github.io/'><img src='https://img.shields.io/badge/Project-Page-green'></a>
@@ -12,13 +12,13 @@
 
 </div>
 
-**This repository is a work in progress** and demonstrates how to align video diffusion models with epipolar geometry constraints using preference-based optimization. We bridge modern video generation with classical computer vision by using epipolar geometry as a reward signal in a Flow-DPO framework to improve 3D consistency in generated videos.
+**Accepted to TMLR.** This repository is a work in progress and demonstrates how to align video diffusion models with epipolar geometry constraints using preference-based optimization. We bridge modern video generation with classical computer vision by using epipolar geometry as a reward signal in a Flow-DPO framework to improve 3D consistency in generated videos.
 
 ![Epipolar Alignment](images/architecture.svg)
 
 ## News
-- [2025/01] 🔥 Initial code release - Training pipeline and evaluation metrics
-- [2025/01] 📄 Paper accepted to arXiv
+- [2026/11] Paper accepted to TMLR.
+- Code for the training pipeline and evaluation metrics is available in this repository.
 
 ## Overview
 
@@ -47,8 +47,8 @@ Epipolar geometry provides fundamental mathematical constraints for 3D consisten
 ### Setup
 
 ```bash
-git clone https://github.com/yourusername/synth_3d.git
-cd synth_3d
+git clone https://github.com/KupynOrest/epipolar-dpo.git
+cd epipolar-dpo
 pip install -r model_training/requirements.txt
 ```
 
@@ -80,10 +80,8 @@ Run evaluation on generated videos to compute 3D consistency metrics.
 
 ```bash
 python metrics/run_evaluation.py \
-    --video_dir /path/to/videos \
-    --metadata_path /path/to/metadata.json \
-    --output_path /path/to/annotated_metadata.json \
-    --config metrics/config/evaluators.yaml
+    metadata_folder=/path/to/metadata \
+    save_folder=/path/to/output
 ```
 
 **Available Metrics:**
@@ -97,8 +95,7 @@ python metrics/run_evaluation.py \
 Train a LoRA adapter using Flow-DPO on the annotated dataset.
 
 ```bash
-cd model_training/reward_lora
-python train.py \
+python model_training/reward_lora/train.py \
     data.metadata_path=/path/to/annotated_metadata.json \
     data.metric_name=epipolar_consistency \
     data.metric_mode=min \
@@ -124,6 +121,8 @@ python model_training/reward_lora/generate.py \
 python model_training/reward_lora/evaluate.py \
     output_dir=/path/to/results
 ```
+
+The generation and evaluation scripts use `model_training/reward_lora/config/test.yaml`; set its data, model and evaluator paths for your environment.
 
 ## Configuration
 
@@ -162,7 +161,7 @@ Our epipolar-aligned model significantly reduces artifacts and enhances motion s
 
 ## Citation
 
-If you use this code in your research, please cite:
+If you use this code, please cite the following arXiv version. The accepted TMLR manuscript has an expanded author list; its final citation can be added after publication:
 
 ```bibtex
 @article{kupyn2025epipolar,
